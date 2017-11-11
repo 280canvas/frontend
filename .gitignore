@@ -1,6 +1,2 @@
 node_modules
-<<<<<<< HEAD
 .vscode
-=======
-.vscode
->>>>>>> Add engine types + rendering loop 🎉
