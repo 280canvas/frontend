@@ -9,10 +9,10 @@ const shouldRunProgramForFrame = (stateStore: StateStore) => (program: Program) 
 };
 
 
-function renderFrame(stateStore: StateStore, programList: Program[]) {
+function renderFrame(stateStore: StateStore, programList: Program[], ctx: CanvasRenderingContext2D) {
   programList
     .filter(shouldRunProgramForFrame(stateStore))
-    .forEach(renderFrameForProgram(stateStore));
+    .forEach(renderFrameForProgram(stateStore, ctx));
 }
 
 const programList: ProgramList = [];
@@ -40,7 +40,7 @@ export function registerCanvas(canvas: HTMLCanvasElement) {
 
 
   const render =  () => requestAnimationFrame(() => {
-    renderFrame(stateStore, programList);
+    renderFrame(stateStore, programList, context);
     render();
   });
 

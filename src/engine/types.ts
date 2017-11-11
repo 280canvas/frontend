@@ -38,6 +38,10 @@ export type ProgramList = Program[];
 
 export type Expression = ExpressionInteger | ExpressionVariable | ExpressionBinop | ExpressionFunctionCall;
 
+export interface StatementClear {
+  instruction: 'clear'
+}
+
 export interface StatementRectangle {
   instruction: 'rectangle';
   x: Expression;
@@ -46,7 +50,38 @@ export interface StatementRectangle {
   h: Expression;
 }
 
-export type Statement = StatementRectangle;
+export interface StatementCircle {
+  instruction: 'circle';
+  x: Expression;
+  y: Expression;
+  r: Expression;
+}
+
+export interface StatementLine {
+  instruction: 'line';
+  x1: Expression;
+  y1: Expression;
+  x2: Expression;
+  y2: Expression;
+}
+
+export interface StatementArc {
+  instruction: 'arc';
+  x1: Expression;
+  y1: Expression;
+  x2: Expression;
+  y2: Expression;
+  cx: Expression;
+  cy: Expression;
+}
+
+export interface StatementAssign {
+  instruction: 'assign';
+  identifier: string;
+  value: Expression;
+}
+
+export type Statement = StatementClear | StatementRectangle | StatementCircle | StatementLine | StatementArc | StatementAssign;
 
 export interface ProgramState {
   variables: {
