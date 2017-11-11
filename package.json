@@ -9,7 +9,7 @@
     "coverage": "babel-node node_modules/.bin/isparta cover --report text --report html node_modules/.bin/_mocha -- --reporter dot",
     "clean": "rimraf dist",
     "dist": "NODE_ENV=production `npm bin`/webpack -p",
-    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config --hot"
+    "serve": "`yarn bin`/webpack-dev-server --config webpack.dev.config --hot"
   },
   "author": "James Canning <james@jamescanning.com> (http://brudil.com)",
   "license": "ISC",
