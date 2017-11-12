@@ -25,15 +25,15 @@ addProgram({
       },
       "y": {
         "returns": "integer",
-        "integer": 2
+        "integer": 0
       },
       "w": {
         "returns": "integer",
-        "integer": 3
+        "integer": 1200
       },
       "h": {
         "returns": "integer",
-        "integer": 4
+        "integer": 1200
       }
     },
     {

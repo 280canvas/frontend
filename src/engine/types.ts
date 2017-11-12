@@ -17,9 +17,11 @@ export interface ExpressionVariable {
 
 export interface ExpressionBinop {
   returns: ExpressionType.Binop;
-  l: Expression;
-  r: Expression;
-  op: string;
+  binop: {
+    l: Expression;
+    r: Expression;
+    op: string;
+  };
 }
 
 export interface ExpressionFunctionCall {

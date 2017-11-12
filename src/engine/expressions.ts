@@ -7,10 +7,10 @@ export function computeExpression(state: ProgramState, expression: Expression): 
     case (ExpressionType.Variable):
       return state.variables[expression.variable];
     case (ExpressionType.Binop):
-      const lhs = computeExpression(state, expression.l);
-      const rhs = computeExpression(state, expression.r);
+      const lhs = computeExpression(state, expression.binop.l);
+      const rhs = computeExpression(state, expression.binop.r);
 
-      switch (expression.op) {
+      switch (expression.binop.op) {
         case "/":
           return lhs / rhs;
         case "//":
