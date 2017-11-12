@@ -12,6 +12,10 @@ export const renderFrameForProgram = (stateStore: StateStore, ctx: CanvasRenderi
       case ("clear"):
         ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
         break;
+      case ("colour"):
+        ctx.fillStyle = statement.colour;
+        ctx.strokeStyle = statement.colour;
+        break;
       case ("assign"):
         return state.variables[statement.identifier] = computeExpression(state, statement.value);
       case ("rectangle"):
@@ -35,7 +39,29 @@ export const renderFrameForProgram = (stateStore: StateStore, ctx: CanvasRenderi
         break;
       case ("line"):
         ctx.beginPath();
-        ctx.lineTo()
+        ctx.moveTo(
+          computeExpression(state, statement.x1),
+          computeExpression(state, statement.y1)
+        );
+        ctx.lineTo(
+          computeExpression(state, statement.x2),
+          computeExpression(state, statement.y2)
+        );
+        ctx.stroke();
+        break;
+      case ("arc"):
+        ctx.beginPath();
+        ctx.moveTo(
+          computeExpression(state, statement.x1),
+          computeExpression(state, statement.y1)
+        );
+        ctx.quadraticCurveTo(
+          computeExpression(state, statement.x2),
+          computeExpression(state, statement.y2),
+          computeExpression(state, statement.cx),
+          computeExpression(state, statement.cy)
+        );
+        ctx.stroke();
     }
   });
 

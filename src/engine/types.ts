@@ -42,6 +42,11 @@ export interface StatementClear {
   instruction: 'clear'
 }
 
+export interface StatementColour {
+  instruction: 'colour';
+  colour: string;
+}
+
 export interface StatementRectangle {
   instruction: 'rectangle';
   x: Expression;
@@ -81,7 +86,7 @@ export interface StatementAssign {
   value: Expression;
 }
 
-export type Statement = StatementClear | StatementRectangle | StatementCircle | StatementLine | StatementArc | StatementAssign;
+export type Statement = StatementClear | StatementColour | StatementRectangle | StatementCircle | StatementLine | StatementArc | StatementAssign;
 
 export interface ProgramState {
   variables: {
