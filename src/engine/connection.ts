@@ -1,8 +1,10 @@
 
-export function createConnection() {
-  const ws = new WebSocket("ws:/localhost:8000/stream");
+export function createConnection(addProgram: any) {
+  const ws = new WebSocket("wss:/platform.280canvas.com/stream");
 
   ws.onmessage = function (event) {
-    console.log(event.data);
+    if (event.data !== 'heartbeat') {
+      addProgram(JSON.parse(event.data));
+    }
   };
 }

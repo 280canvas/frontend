@@ -6,7 +6,7 @@ import Application from './components/Application';
 import {addProgram} from "./engine/index";
 
 
-createConnection();
+createConnection(addProgram);
 
 addProgram({
   "variables": {
