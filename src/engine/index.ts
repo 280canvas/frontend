@@ -35,7 +35,7 @@ export function registerCanvas(canvas: HTMLCanvasElement) {
     return;
   }
 
-  // context.fillStyle = 'red';
+  context.fillStyle = 'red';
   // context.fillRect(0, 0, 1200, 1200);
 
 
