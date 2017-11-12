@@ -4,7 +4,8 @@ export function createConnection(addProgram: any) {
 
   ws.onmessage = function (event) {
     if (event.data !== 'heartbeat') {
-      addProgram(JSON.parse(event.data));
+      console.log(event.data);
+      addProgram(JSON.parse(JSON.parse(event.data).program));
     }
   };
 }
