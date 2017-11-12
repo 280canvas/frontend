@@ -29,17 +29,19 @@ export function computeExpression(state: ProgramState, expression: Expression): 
       const computedExps: number[] = expression.funccall.arguments.map(computeExpression.bind(null, state));
       switch (expression.funccall.functionName) {
         case "sin":
-          return Math.sin(computedExps[0]);
+          return Math.sin(computedExps[0] * (Math.PI / 180));
         case "cos":
-          return Math.cos(computedExps[0]);
+          return Math.cos(computedExps[0] * (Math.PI / 180));
         case "tan":
-          return Math.tan(computedExps[0]);
+          return Math.tan(computedExps[0] * (Math.PI / 180));
         case "pow":
           return Math.pow(computedExps[0], computedExps[2]);
-        case "rand":
+        case "random":
           const max: number = computedExps[0];
           const min: number = computedExps[1];
           return Math.floor(Math.random()*(max-min+1)+min);
+        case "abs":
+          return Math.abs(computedExps[0]);
       }
     default: return 0;
   }

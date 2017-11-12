@@ -1,6 +1,7 @@
 import {Program, ProgramList, StateStore} from "./types";
 import {renderFrameForProgram} from "./renderer";
 import { getStateForProgram } from "./utils";
+import {computeExpression} from "./expressions";
 
 const shouldRunProgramForFrame = (stateStore: StateStore) => (program: Program) => {
   const state = getStateForProgram(stateStore, program);
@@ -22,7 +23,10 @@ let id = 0;
 export function addProgram(program: any) {
   const programId =  id++;
   programList.push({ ...program, id: programId, interval: program.loop });
-  stateStore[programId] = { variables: program.variables, lastRun: Date.now() };
+  const computedVariables:any = {};
+  const state:any = {};
+  Object.keys(program.variables).forEach(key => computedVariables[key] = computeExpression(state, program.variables[key]))
+  stateStore[programId] = { variables: computedVariables, lastRun: Date.now() };
 }
 
 export function registerCanvas(canvas: HTMLCanvasElement) {
@@ -36,7 +40,7 @@ export function registerCanvas(canvas: HTMLCanvasElement) {
   }
 
   context.fillStyle = 'red';
-  // context.fillRect(0, 0, 1200, 1200);
+  //context.fillRect(0, 0, 1200, 1200);
 
 
   const render =  () => requestAnimationFrame(() => {

@@ -5,7 +5,7 @@ import { computeExpression } from "./expressions";
 
 export const renderFrameForProgram = (stateStore: StateStore, ctx: CanvasRenderingContext2D) => (program: Program) => {
   const state = getStateForProgram(stateStore, program);
-  console.log('[engine] starting render for program', program.id);
+  //console.log('[engine] starting render for program', program.id);
   const ctxwidth = ctx.canvas.width;
   const ctxheight = ctx.canvas.height;
   const percentageToCoord = (percentange: number, absoluteSpace: number) => {
@@ -14,7 +14,7 @@ export const renderFrameForProgram = (stateStore: StateStore, ctx: CanvasRenderi
   }
 
   program.statements.forEach((statement: Statement) => {
-    console.log('[engine] rendering statement', statement);
+    //console.log('[engine] rendering statement', statement);
     switch (statement.instruction) {
       case ("clear"):
         ctx.clearRect(0,0,ctxwidth, ctxheight);
@@ -32,16 +32,18 @@ export const renderFrameForProgram = (stateStore: StateStore, ctx: CanvasRenderi
           percentageToCoord(computeExpression(state, statement.w), ctxwidth),
           percentageToCoord(computeExpression(state, statement.h), ctxheight)
         );
+        
         ctx.fill();
         break;
       case ("circle"):
-        ctx.ellipse(
+      ctx. beginPath();
+        ctx.arc(
           percentageToCoord(computeExpression(state, statement.x), ctxwidth),
           percentageToCoord(computeExpression(state, statement.y), ctxheight),
-          percentageToCoord(computeExpression(state, statement.r), ctxwidth),
-          percentageToCoord(computeExpression(state, statement.r), ctxheight),
-          0,0,0
+          Math.abs(percentageToCoord(computeExpression(state, statement.r), ctxwidth)),
+          0, Math.PI * 2
         );
+        ctx.stroke();
         ctx.fill();
         break;
       case ("line"):

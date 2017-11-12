@@ -29,7 +29,7 @@ export default class RendCanvas extends React.Component {
   render() {
     return (
       <Container>
-        <Canvas innerRef={(ref: any) => (this.canvasEl = ref)} width="1200" height="1200" />
+        <Canvas innerRef={(ref: any) => (this.canvasEl = ref)} width={window.innerWidth} height={window.innerHeight} />
       </Container>
     )
   }
